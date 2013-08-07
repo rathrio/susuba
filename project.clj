@@ -1,6 +1,7 @@
 (defproject susuba "0.1.0-SNAPSHOT"
   :description "Susuba Backend"
   :url "http://example.com/FIXME"
+  :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [compojure "1.1.5"]
                  [congomongo "0.4.1"]]
