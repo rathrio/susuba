@@ -1,6 +1,6 @@
 # susuba
 
-This app provides a mongoDB backend and can be accessed via a JSON API. A frontend is in development at the [susuba-web-ui project (http://github.com/jugglinghobo/susuba-web-ui)].
+This app provides a mongoDB backend that can be accessed via a JSON API. A frontend is in development at the [susuba-web-ui project] (http://github.com/jugglinghobo/susuba-web-ui).
 
 ## Prerequisites
 
