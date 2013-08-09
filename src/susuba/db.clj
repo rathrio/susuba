@@ -1,13 +1,14 @@
 (ns susuba.db
-  (:require [somnium.congomongo :as m]))
+  (:require [somnium.congomongo :as m]
+            [susuba.beer :as beer])
+  (:use [somnium.congomongo.config :only [*mongo-config*]]))
 
-(def conn
-  (m/make-connection "susuba"))
+(defn maybe-init
+  "Connects to a collection if it exists, creates it otherwise."
+  []
+  (when-not (m/connection? *mongo-config*)
+    (let [mongo-url (get (System/getenv) "MONGODB_URI" "mongodb://localhost/susuba")]
+      (m/set-connection! (m/make-connection mongo-url))
+      (m/set-write-concern *mongo-config* :safe)
+      (beer/maybe-init))))
 
-(m/set-connection! conn)
-
-(m/insert! :beers
-           {:name "Bier Bienne 3"})
-
-(defn one-beer []
-  m/fetch-one :beers)
