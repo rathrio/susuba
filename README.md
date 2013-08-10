@@ -1,18 +1,31 @@
 # susuba
 
-This app provides a mongoDB backend that can be accessed via a JSON API. A frontend is in development at the [susuba-web-ui project] (http://github.com/jugglinghobo/susuba-web-ui).
+This application provides a MongoDB backend that can be accessed via a JSON API. A frontend is in development at the [susuba-web-ui project][1].
+[1]: http://github.com/jugglinghobo/susuba-web-ui
 
 ## Prerequisites
 
-You will need [Leiningen][1] 1.7.0 or above installed.
+### Leiningen
 
-[1]: https://github.com/technomancy/leiningen
+You will need [Leiningen][2] 1.7.0 or above installed.
+
+[2]: https://github.com/technomancy/leiningen
+
+### MongoDB
+
+Install MongoDB. [Here's how][3].
+
+[3]: http://docs.mongodb.org/manual/installation/
 
 ## Running
 
-To start a web server for the application, run:
+Before running the application, start up MongoDB:
 
-    lein ring server
+    mongod
+
+then start the application:
+
+    lein run
 
 ## License
 
