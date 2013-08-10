@@ -6,8 +6,7 @@
       (m/create-collection! :beers))
 
   (m/add-index! :beers [:name] :unique true)
-  (m/add-index! :beers [:alc])
-  (m/add-index! :beers [:created_at]))
+  (m/add-index! :beers [:alc]))
 
 (defn all []
   (m/fetch :beers :as :json))
