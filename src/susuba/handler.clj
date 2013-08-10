@@ -1,8 +1,9 @@
 (ns susuba.handler
   (:use compojure.core
-        [ring.adapter.jetty :only [run-jetty]]
-        [ring.middleware.json]
-        [ring.util.response])
+        ring.middleware.json
+        ring.util.response
+        ring.middleware.cors
+        [ring.adapter.jetty :only [run-jetty]])
   (:require [compojure.handler :as handler]
             [compojure.route :as route]
             [susuba.db :as db]
@@ -19,7 +20,9 @@
 (def app
   (-> (handler/api app-routes)
     (wrap-json-body)
-    (wrap-json-response)))
+    (wrap-json-response)
+    (wrap-cors
+       :access-control-allow-origin #"http://localhost:4567")))
 
 (defn- port []
   (Integer/parseInt (or (System/getenv "PORT") "3000")))
