@@ -1,6 +1,6 @@
 (defproject susuba "0.1.0-SNAPSHOT"
   :description "Susuba Backend"
-  :url "http://example.com/FIXME"
+  :url "http://susuba.herokuapp.com"
   :min-lein-version "2.0.0"
   :main susuba.handler
   :dependencies [[org.clojure/clojure "1.5.1"]
