@@ -26,6 +26,15 @@ Start MongoDB first:
 then run the application:
 
     lein run
+    
+### Foreman
+    
+This application has a Procfile, so if you're using [foreman][4] you can also 
+run it with:
+
+    foreman start
+
+[4]: http://github.com/ddollar/foreman
 
 ## License
 
