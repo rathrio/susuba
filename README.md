@@ -19,11 +19,11 @@ Install MongoDB. [Here's how][3].
 
 ## Running
 
-Before running the application, start up MongoDB:
+Start MongoDB first:
 
     mongod
 
-then start the application:
+then run the application:
 
     lein run
 
