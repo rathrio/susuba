@@ -1,17 +1,12 @@
 (ns susuba.beer
-  (:require [somnium.congomongo :as m]))
-
-(defn maybe-init []
-  (or (m/collection-exists? :beers)
-      (m/create-collection! :beers))
-
-  (m/add-index! :beers [:name] :unique true)
-  (m/add-index! :beers [:alc]))
+  (:use cheshire.core)
+  (:require monger.json
+            [monger.collection :as mc]))
 
 (defn all []
-  (m/fetch :beers :as :json))
+  (generate-string (mc/find-maps "beers")))
 
 (defn create [] ())
 
-(defn find [id] ())
+(defn find_by_id [id] ())
 

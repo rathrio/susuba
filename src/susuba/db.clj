@@ -1,14 +1,14 @@
 (ns susuba.db
-  (:require [somnium.congomongo :as m]
-            [susuba.beer :as beer])
-  (:use [somnium.congomongo.config :only [*mongo-config*]]))
+  (:require [monger.core :as mg]))
 
-(defn maybe-init
-  "Connects to a collection if it exists, creates it otherwise."
+(def mongo-url (System/getenv "MONGOHQ_URL"))
+
+(defn init
+  "Connects to the db via URI if it can be found in the 'MONGOHQ_URL'
+  env variable, connects to localhost otherwise."
   []
-  (when-not (m/connection? *mongo-config*)
-    (let [mongo-url (get (System/getenv) "MONGOHQ_URL" "mongodb://localhost/susuba")]
-      (m/set-connection! (m/make-connection mongo-url))
-      (m/set-write-concern *mongo-config* :safe)
-      (beer/maybe-init))))
-
+  (if mongo-url
+    (mg/connect-via-uri! mongo-url)
+    (do
+      (mg/connect!)
+      (mg/set-db! (mg/get-db "susuba")))))

@@ -14,7 +14,7 @@
     (GET "/" [] (beer/all))
     (POST "/" {body :body} (beer/create))
     (context "/:id" [id] (defroutes beer-routes
-      (GET "/" [] (beer/find id))))))
+      (GET "/" [] (beer/find_by_id id))))))
 
   (GET "/" [] "Welcome to the dark side. There's nothing to see here.")
   (route/resources "/")
@@ -31,5 +31,5 @@
   (Integer/parseInt (or (System/getenv "PORT") "3000")))
 
 (defn -main []
-  (db/maybe-init)
+  (db/init)
   (run-jetty app {:port (port)}))

@@ -5,7 +5,7 @@
   :main susuba.handler
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [compojure "1.1.5"]
-                 [congomongo "0.4.1"]
+                 [com.novemberain/monger "1.6.0"]
                  [cheshire "5.2.0"]
                  [ring "1.2.0"]
                  [ring/ring-json "0.2.0"]
