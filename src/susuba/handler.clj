@@ -10,10 +10,13 @@
             [susuba.beer :as beer]))
 
 (defroutes app-routes
-  (context "/beers" [] (defroutes beer-routes
-    (GET "/" [] (beer/all))))
+  (context "/beers" [] (defroutes beers-routes
+    (GET "/" [] (beer/all))
+    (POST "/" {body :body} (beer/create))
+    (context "/:id" [id] (defroutes beer-routes
+      (GET "/" [] (beer/find id))))))
 
-  (GET "/" [] "Hello this is dawg.")
+  (GET "/" [] "Welcome to the dark side. There's nothing to see here.")
   (route/resources "/")
   (route/not-found "Not Found"))
 

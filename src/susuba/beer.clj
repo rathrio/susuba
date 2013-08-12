@@ -11,3 +11,7 @@
 (defn all []
   (m/fetch :beers :as :json))
 
+(defn create [] ())
+
+(defn find [id] ())
+
