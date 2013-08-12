@@ -4,7 +4,7 @@
             [monger.collection :as mc]))
 
 (defn all []
-  (generate-string (mc/find-maps "beers")))
+  (generate-string {:beers (mc/find-maps "beers")}))
 
 (defn create [] ())
 
