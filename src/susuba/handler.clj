@@ -27,7 +27,11 @@
     (wrap-json-body)
     (wrap-json-response)
     (wrap-cors
-       :access-control-allow-origin #"http://localhost:4567")))
+      :access-control-allow-origin #"http://localhost:4567"
+      :access-control-request-method ["POST" "PUT"]
+      :access-control-expose-headers ["Origin" "X-Requested-With" "Content-Type" "Accept"]
+      :access-control-request-headers ["Origin" "X-Requested-With" "Content-Type" "Accept"])))
+
 
 (defn- port []
   (Integer/parseInt (or (System/getenv "PORT") "3000")))
