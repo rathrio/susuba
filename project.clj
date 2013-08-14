@@ -12,6 +12,7 @@
                  [ring-cors "0.1.0"]
                  [ring.middleware.logger "0.4.0"]]
   :plugins [[lein-ring "0.8.5"]]
-  :ring {:handler susuba.handler/app}
+  :ring {:init susuba.db/init
+         :handler susuba.handler/app}
   :profiles
   {:dev {:dependencies [[ring-mock "0.1.5"]]}})

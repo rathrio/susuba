@@ -6,7 +6,6 @@
             [susuba.db :as db]))
 
 (defn all []
-  (db/init)
   (response {:beers (mc/find-maps "beers")}))
 
 (defn create [] ())
