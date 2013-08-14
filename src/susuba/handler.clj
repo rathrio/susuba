@@ -1,10 +1,11 @@
 (ns susuba.handler
   (:use compojure.core
+        cheshire.core
         ring.middleware.json
         ring.util.response
-        ring.middleware.cors
         [ring.adapter.jetty :only [run-jetty]])
-  (:require [compojure.handler :as handler]
+  (:require [ring.middleware.cors :as cors]
+            [compojure.handler :as handler]
             [compojure.route :as route]
             [ring.middleware.logger :as logger]
             [susuba.db :as db]
@@ -25,17 +26,21 @@
   (-> (handler/api app-routes)
     (logger/wrap-with-logger)
     (wrap-json-body)
-    (wrap-json-response)
-    (wrap-cors
-      :access-control-allow-origin #"http://localhost:4567"
-      :access-control-request-method ["POST" "PUT"]
-      :access-control-expose-headers ["Origin" "X-Requested-With" "Content-Type" "Accept"]
-      :access-control-request-headers ["Origin" "X-Requested-With" "Content-Type" "Accept"])))
+    (wrap-json-response {:pretty true})
+    (cors/wrap-cors
+      :access-control-allow-origin #".*"
+      :access-control-allow-headers ["Origin" "X-Requested-With" "Content-Type" "Accept"]
+      :access-control-expose-headers ["Origin" "X-Requested-With" "Content-Type" "Accept"])))
 
 
 (defn- port []
   (Integer/parseInt (or (System/getenv "PORT") "3000")))
 
-(defn -main []
+(defn -main
+  "This function will be called when one executes
+   'lein run'. I have yet to find out how to start
+   the ring server on heroku without providing a
+   main function."
+  []
   (db/init)
   (run-jetty app {:port (port)}))
