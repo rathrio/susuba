@@ -9,7 +9,8 @@
                  [cheshire "5.2.0"]
                  [ring "1.2.0"]
                  [ring/ring-json "0.2.0"]
-                 [ring-cors "0.1.0"]]
+                 [ring-cors "0.1.0"]
+                 [ring.middleware.logger "0.4.0"]]
   :plugins [[lein-ring "0.8.5"]]
   :ring {:handler susuba.handler/app}
   :profiles
