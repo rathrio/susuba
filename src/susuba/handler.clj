@@ -11,12 +11,20 @@
             [susuba.db :as db]
             [susuba.beers :as beers]))
 
+(def options-response
+  {:status 200
+   :headers {"Content-Type" "application/json; charset=utf-8"}
+   :body "Hello Stupid API Client"})
+
 (defroutes app-routes
   (context "/beers" []
     (GET "/" [] (beers/all))
+    (OPTIONS "/" [] options-response)
     (POST "/" {body :body} (beers/create body))
     (context "/:id" [id]
-      (GET "/" [] (beers/find_by_id id))))
+      (GET "/" [] (beers/find_by_id id))
+      (OPTIONS "/" [] options-response)
+      (PUT "/" {body :body} (beers/update id body))))
 
   (GET "/" [] "Welcome to the dark side. There's nothing to see here.")
   (route/resources "/")
@@ -29,8 +37,8 @@
     (wrap-json-response {:pretty true})
     (cors/wrap-cors
       :access-control-allow-origin #".*"
+      :access-control-allow-methods ["POST" "PUT"]
       :access-control-allow-headers ["Origin" "X-Requested-With" "Content-Type" "Accept"])))
-
 
 (defn- port []
   (Integer/parseInt (or (System/getenv "PORT") "3000")))
