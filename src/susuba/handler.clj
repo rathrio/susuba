@@ -29,8 +29,7 @@
     (wrap-json-response {:pretty true})
     (cors/wrap-cors
       :access-control-allow-origin #".*"
-      :access-control-allow-headers ["Origin" "X-Requested-With" "Content-Type" "Accept"]
-      :access-control-expose-headers ["Origin" "X-Requested-With" "Content-Type" "Accept"])))
+      :access-control-allow-headers ["Origin" "X-Requested-With" "Content-Type" "Accept"])))
 
 
 (defn- port []

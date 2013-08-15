@@ -8,6 +8,7 @@
 (defn all []
   (response {:beers (mc/find-maps "beers")}))
 
-(defn create [] ())
+(defn create [body]
+  (clojure.tools.logging/info (str body)))
 
 (defn find_by_id [id] ())
