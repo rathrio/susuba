@@ -22,7 +22,7 @@
     (OPTIONS "/" [] options-response)
     (POST "/" {body :body} (beers/create body))
     (context "/:id" [id]
-      (GET "/" [] (beers/find_by_id id))
+      (GET "/" [] (beers/find-by-id id))
       (OPTIONS "/" [] options-response)
       (PUT "/" {body :body} (beers/update id body))))
 
