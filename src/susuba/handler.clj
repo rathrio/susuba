@@ -24,7 +24,8 @@
     (context "/:id" [id]
       (GET "/" [] (beers/find-by-id id))
       (OPTIONS "/" [] options-response)
-      (PUT "/" {body :body} (beers/update id body))))
+      (PUT "/" {body :body} (beers/update id body))
+      (DELETE "/" [] (beers/delete id))))
 
   (GET "/" [] "Welcome to the dark side. There's nothing to see here.")
   (route/resources "/")
@@ -37,7 +38,7 @@
     (wrap-json-response {:pretty true})
     (cors/wrap-cors
       :access-control-allow-origin #".*"
-      :access-control-allow-methods ["POST" "PUT"]
+      :access-control-allow-methods ["POST" "PUT" "DELETE"]
       :access-control-allow-headers ["Origin" "X-Requested-With" "Content-Type" "Accept"])))
 
 (defn- port []
