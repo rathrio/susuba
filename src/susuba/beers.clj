@@ -17,7 +17,7 @@
 
 (defn find-by-id [id]
   (let [oid (ObjectId. id)]
-    (response (mc/find-one-as-map "beers" {:_id oid}))))
+    (response {:beer (mc/find-one-as-map "beers" {:_id oid})})))
 
 (defn update [id body]
   (let [oid (ObjectId. id)
