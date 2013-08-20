@@ -24,3 +24,8 @@
         doc (body "beer")]
     (mc/update-by-id "beers" oid doc)
     (find-by-id id)))
+
+(defn delete [id]
+  (let [oid (ObjectId. id)]
+    (mc/remove-by-id "beers" oid)
+    {:status 204}))
