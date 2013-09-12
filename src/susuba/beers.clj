@@ -7,7 +7,7 @@
             [susuba.db :as db])
   (:import [org.bson.types ObjectId]))
 
-(defn all []
+(defn index []
   (response {:beers (mc/find-maps "beers")}))
 
 (defn create [body]
@@ -29,3 +29,8 @@
   (let [oid (ObjectId. id)]
     (mc/remove-by-id "beers" oid)
     {:status 204}))
+
+(defn random
+  "Returns a random beer"
+  []
+  (response {:beer (rand-nth (mc/find-maps "beers"))}))

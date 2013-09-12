@@ -18,7 +18,9 @@
 
 (defroutes app-routes
   (context "/beers" []
-    (GET "/" [] (beers/all))
+    (OPTIONS "/random" [] options-response)
+    (GET "/random" [] (beers/random))
+    (GET "/" [] (beers/index))
     (OPTIONS "/" [] options-response)
     (POST "/" {body :body} (beers/create body))
     (context "/:id" [id]
@@ -39,7 +41,8 @@
     (cors/wrap-cors
       :access-control-allow-origin #".*"
       :access-control-allow-methods ["POST" "PUT" "DELETE"]
-      :access-control-allow-headers ["Origin" "X-Requested-With" "Content-Type" "Accept"])))
+      :access-control-allow-headers
+        ["Origin" "X-Requested-With" "Content-Type" "Accept"])))
 
 (defn- port []
   (Integer/parseInt (or (System/getenv "PORT") "3000")))
