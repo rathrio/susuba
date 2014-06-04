@@ -28,8 +28,7 @@
       (OPTIONS "/" [] options-response)
       (PUT "/" {body :body} (beers/update id body))
       (DELETE "/" [] (beers/delete id))))
-
-  (GET "/" [] "Welcome to the dark side. There's nothing to see here.")
+  (GET "/" [] (ring.util.response/redirect "/index.html"))
   (route/resources "/")
   (route/not-found "Not Found"))
 
